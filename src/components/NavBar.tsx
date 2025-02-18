@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { FaChevronDown, FaBars, FaTimes } from "react-icons/fa";
-import Logo from "../../assets/logo.svg";
+import Logo from "../assets/logo.svg";
 
 const categories = ["Ação", "Comédia", "Drama", "Terror", "Ficção Científica"];
 
