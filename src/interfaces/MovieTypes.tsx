@@ -9,6 +9,7 @@ export interface Movie {
     release_date: string;
     vote_average: number;
     genres?: { id: number; name: string }[];
+    featured?: boolean;
 }
 
 export interface MovieContextProps {
