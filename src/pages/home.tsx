@@ -10,29 +10,12 @@ const Home: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null);
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
   useEffect(() => {
-    const fetchMovies = async () => {
-      try {
-        const apiKey = "c5a74bdd0a627511bb8c930d845caeeb";
-        const apiUrl = "https://api.themoviedb.org/3/movie/popular?language=pt-BR";
-        
-        if (!apiKey || !apiUrl) {
-          console.error("API Key ou URL não encontrada nas variáveis de ambiente!");
-          return;
-        }
-
-        const response = await fetch(`${apiUrl}&api_key=${apiKey}`);
-        if (!response.ok) throw new Error("Erro na requisição");
-        const data = await response.json();
-        console.log("Filmes buscados:", data.results);
-        setMovies(data.results);
-      } catch (error) {
-        console.error("Erro ao buscar filmes:", error);
-      }
-    };
-
-    fetchMovies();
+    fetch('https://tmdb-proxy.cubos-academy.workers.dev/3/discover/movie?language=pt-BR')
+      .then((response) => response.json())
+      .then((data) => setMovies(data.results));
   }, []);
 
   const handleSearch = (query: string) => {
@@ -40,9 +23,18 @@ const Home: React.FC = () => {
   };
 
   const handleCategorySelect = (category: string) => {
-    console.log("Categoria selecionada:", category);
-    // Aqui você pode aplicar o filtro para filmes por categoria
+    setSelectedCategory(category);
+
   };
+
+  const filteredMovies = movies.filter((movie) => {
+    const matchesSearch = movie.title.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesCategory = 
+      !selectedCategory || movie.category === selectedCategory;
+    return matchesSearch && matchesCategory;
+  }
+
+  );
 
   const openModal = (movie: Movie) => {
     setSelectedMovie(movie);
@@ -54,15 +46,13 @@ const Home: React.FC = () => {
     setSelectedMovie(null);
   };
 
-  const filteredMovies = movies.filter((movie) =>
-    movie.title.toLowerCase().includes(searchQuery.toLowerCase())
-  );
-
+ 
   return (
     <div className="bg-gray-900 min-h-screen text-white">
+      {/* Componente Header */}
       <Header 
         onSearch={handleSearch} 
-        onCategorySelect={handleCategorySelect} // Passa a função de categoria aqui
+        onCategorySelect={handleCategorySelect}
       />
       <MovieList movies={filteredMovies} onMovieClick={openModal} />
       {selectedMovie && (
