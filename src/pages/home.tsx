@@ -1,4 +1,4 @@
-// src/components/MainLayout.tsx
+// src/pages/Home.tsx
 import React, { useState, useEffect } from 'react';
 import Header from '../components/Header';
 import MovieList from '../components/MovieList';
@@ -39,6 +39,11 @@ const Home: React.FC = () => {
     setSearchQuery(query);
   };
 
+  const handleCategorySelect = (category: string) => {
+    console.log("Categoria selecionada:", category);
+    // Aqui você pode aplicar o filtro para filmes por categoria
+  };
+
   const openModal = (movie: Movie) => {
     setSelectedMovie(movie);
     setIsModalOpen(true);
@@ -55,7 +60,10 @@ const Home: React.FC = () => {
 
   return (
     <div className="bg-gray-900 min-h-screen text-white">
-      <Header onSearch={handleSearch} /> {/* Passa o onSearch para o Header */}
+      <Header 
+        onSearch={handleSearch} 
+        onCategorySelect={handleCategorySelect} // Passa a função de categoria aqui
+      />
       <MovieList movies={filteredMovies} onMovieClick={openModal} />
       {selectedMovie && (
         <MovieModal isOpen={isModalOpen} movie={selectedMovie} onClose={closeModal} />

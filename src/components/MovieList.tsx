@@ -23,12 +23,12 @@ const MovieList: React.FC<MovieListProps> = ({ movies, onMovieClick }) => {
 
   return (
     <div className="p-4">
-      {/* Checkbox para Filmes em Destaque */}
 
       {/* Botão para exibir filmes lançados em 2025 */}
       <div className="mb-4">
         <button
           onClick={toggleHighlight}
+          onChange={toggleFeatured}
           className={`px-4 py-2 rounded-lg text-white transition duration-300 ${
             isHighlight ? "bg-blue-500" : "bg-gray-700 hover:bg-gray-600"
           }`}
