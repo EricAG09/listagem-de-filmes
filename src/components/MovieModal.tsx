@@ -12,7 +12,7 @@ const MovieModal: React.FC<MovieModalProps> = ({ isOpen, movie, onClose }) => {
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-      <div className="bg-gray-300 p-6 rounded-lg w-96 relative shadow-lg">
+      <div className="bg-gray-200 p-6 rounded-lg w-96 relative shadow-lg">
         {/* Botão de fechar modal */}
         <button 
           onClick={onClose} 
