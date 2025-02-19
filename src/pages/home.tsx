@@ -4,6 +4,7 @@ import Header from '../components/Header';
 import MovieList from '../components/MovieList';
 import MovieModal from '../components/MovieModal';
 import { Movie } from '../interfaces/MovieTypes';
+import Footer from '../components/footer';
 
 const Home: React.FC = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
@@ -62,7 +63,7 @@ const Home: React.FC = () => {
         )}
       </div>
 
-        
+        <Footer />
     </>
     
   );
