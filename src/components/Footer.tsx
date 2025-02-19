@@ -24,7 +24,8 @@ const Footer: React.FC = () => {
         </nav>
 
         <p className="mt-4 text-sm text-gray-400">
-          © {new Date().getFullYear()} Listagem de Filmes. Todos os direitos reservados - Eric Galvão. 
+          © {new Date().getFullYear()} Listagem de Filmes. Todos os direitos reservados. 
+          <p>Desenvolvido com 💻 por Eric Galvão</p>
         </p>
       </div>
     </footer>
