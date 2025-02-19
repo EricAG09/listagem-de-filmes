@@ -8,30 +8,39 @@ interface MovieListProps {
 
 const MovieList: React.FC<MovieListProps> = ({ movies, onMovieClick }) => {
   const [isFeatured, setIsFeatured] = useState(false);
+  const [isHighlight, setIsHighlight] = useState(false);
 
+  // Alternar exibição de destaques (lançamentos de 2025)
+  const toggleHighlight = () => setIsHighlight((prev) => !prev);
+
+  // Alternar exibição de filmes em destaque
   const toggleFeatured = () => setIsFeatured((prev) => !prev);
 
-  const filteredMovies = isFeatured
-    ? movies.filter((movie) => movie.featured)
-    : movies;
+  // Filtrar os filmes com base nos estados
+  const filteredMovies = movies
+    .filter((movie) => (isFeatured ? movie.featured : true))
+    .filter((movie) => (isHighlight ? movie.release_date.startsWith("2025") : true));
 
   return (
     <div className="p-4">
-      
+      {/* Checkbox para Filmes em Destaque */}
+
+      {/* Botão para exibir filmes lançados em 2025 */}
       <div className="mb-4">
-        <label className="text-white mr-2">Mostrar apenas em destaque</label>
-        <input
-          type="checkbox"
-          checked={isFeatured}
-          onChange={toggleFeatured}
-          className="toggle-checkbox"
-        />
+        <button
+          onClick={toggleHighlight}
+          className={`px-4 py-2 rounded-lg text-white transition duration-300 ${
+            isHighlight ? "bg-blue-500" : "bg-gray-700 hover:bg-gray-600"
+          }`}
+        >
+          {isHighlight ? "Mostrar Todos" : "Destaques (2025)"}
+        </button>
       </div>
 
       {/* Lista de filmes */}
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
         {filteredMovies.length === 0 ? (
-          <p className="text-white text-center col-span-full">Carregando filmes...</p>
+          <p className="text-white text-center col-span-full">Nenhum filme encontrado...</p>
         ) : (
           filteredMovies.map((movie) => (
             <div
