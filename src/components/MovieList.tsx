@@ -10,20 +10,16 @@ const MovieList: React.FC<MovieListProps> = ({ movies, onMovieClick }) => {
   const [isFeatured, setIsFeatured] = useState(false);
   const [isHighlight, setIsHighlight] = useState(false);
 
-  // Alternar exibição de destaques (lançamentos de 2025)
-  const toggleHighlight = () => setIsHighlight((prev) => !prev);
+  const toggleHighlight = () => setIsHighlight((prev) => !prev); 
 
-  // Alternar exibição de filmes em destaque
-  const toggleFeatured = () => setIsFeatured((prev) => !prev);
+  const toggleFeatured = () => setIsFeatured((prev) => !prev); 
 
-  // Filtrar os filmes com base nos estados
   const filteredMovies = movies
     .filter((movie) => (isFeatured ? movie.featured : true))
-    .filter((movie) => (isHighlight ? movie.release_date.startsWith("2025") : true));
+    .filter((movie) => (isHighlight ? movie.release_date.startsWith("2025") : true)); // Essa função irá filtrar os filmes que foram lançados em 2025
 
   return (
     <div className="p-4">
-
       {/* Botão para exibir filmes lançados em 2025 */}
       <div className="mb-4">
         <button
@@ -37,7 +33,7 @@ const MovieList: React.FC<MovieListProps> = ({ movies, onMovieClick }) => {
         </button>
       </div>
 
-      {/* Lista de filmes */}
+      {/* Listagem de filmes */}
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
         {filteredMovies.length === 0 ? (
           <p className="text-white text-center col-span-full">Nenhum filme encontrado...</p>

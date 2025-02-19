@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { FaChevronDown, FaBars, FaTimes } from "react-icons/fa";
 import Logo from "../assets/logo.svg";
 
-const categories = ["Ação", "Comédia", "Drama", "Terror", "Ficção Científica"];
+const categories = ["Ação", "Comédia", "Drama", "Terror", "Ficção Científica"]; // Podendo ser adicionadas mais categorias se necessário
 
 interface NavbarProps {
   onSearch: (query: string) => void;
@@ -20,7 +20,6 @@ const Navbar: React.FC<NavbarProps> = ({ onSearch }) => {
 
   return (
     <nav className="bg-sky-950 text-white p-4 flex justify-between items-center">
-      {/* Logo e Título */}
       <div className="flex items-center space-x-2">
         <img src={Logo} alt="Logo" className="h-10" />
         <span className="text-2xl font-semibold">Filmes</span>
@@ -74,7 +73,7 @@ const Navbar: React.FC<NavbarProps> = ({ onSearch }) => {
         </div>
       </div>
 
-      {/* Menu Mobile */}
+      {/* Menu Mobile o famoso Hamburguer */}
       {isMenuOpen && (
         <div className="absolute top-16 left-0 w-full bg-sky-950 flex flex-col items-center space-y-4 p-4 sm:hidden">
           {/* Barra de Pesquisa */}

@@ -13,25 +13,22 @@ const MovieModal: React.FC<MovieModalProps> = ({ isOpen, movie, onClose }) => {
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
       <div className="bg-gray-300 p-6 rounded-lg w-96 relative shadow-lg">
-        {/* Botão de fechar reposicionado */}
+        {/* Botão de fechar modal */}
         <button 
           onClick={onClose} 
           className="absolute top-3 right-3 text-gray-600 hover:text-gray-800 text-2xl"
         >
           ✖
         </button>
-
-        {/* Título */}
         <h2 className="text-2xl font-bold text-gray-900 text-center">{movie.title}</h2>
 
-        {/* Imagem do filme */}
         <img 
           src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} 
           alt={movie.title} 
           className="w-full h-64 object-cover rounded-lg mt-3"
         />
 
-        {/* Detalhes adicionais */}
+        {/* Detalhes adicionais que aparece no modal */}
         <p className="text-gray-700 mt-3 text-sm">{movie.overview}</p>
         <p className="text-gray-600 mt-2 text-sm">
           <strong>Data de lançamento:</strong> {movie.release_date}
@@ -40,7 +37,7 @@ const MovieModal: React.FC<MovieModalProps> = ({ isOpen, movie, onClose }) => {
           <strong>⭐ Avaliação:</strong> {movie.vote_average?.toFixed(1) || 'N/A'}
         </p>
 
-        {/* Gêneros (se disponíveis) */}
+        {/* Gêneros dos filmes se disponiveis */}
         {movie.genres && movie.genres.length > 0 && (
           <p className="text-gray-600 mt-2 text-sm">
             <strong>Gêneros:</strong> {movie.genres.map(genre => genre.name).join(', ')}

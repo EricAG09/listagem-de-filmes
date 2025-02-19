@@ -4,6 +4,7 @@ import Header from '../components/Header';
 import MovieList from '../components/MovieList';
 import MovieModal from '../components/MovieModal';
 import { Movie } from '../interfaces/MovieTypes';
+import Footer from '../components/footer';
 
 const Home: React.FC = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
@@ -48,17 +49,23 @@ const Home: React.FC = () => {
 
  
   return (
-    <div className="bg-gray-900 min-h-screen text-white">
-      {/* Componente Header */}
-      <Header 
-        onSearch={handleSearch} 
-        onCategorySelect={handleCategorySelect}
-      />
-      <MovieList movies={filteredMovies} onMovieClick={openModal} />
-      {selectedMovie && (
-        <MovieModal isOpen={isModalOpen} movie={selectedMovie} onClose={closeModal} />
-      )}
-    </div>
+    <>
+      <div className="bg-gray-900 min-h-screen text-white">
+        {/* Componente Header onde renderiza a navbar */}
+        <Header 
+          onSearch={handleSearch} 
+          onCategorySelect={handleCategorySelect}
+        />
+        {/* Componente MovieList que irá renderizar os cards dos filmes */}
+        <MovieList movies={filteredMovies} onMovieClick={openModal} />
+        {selectedMovie && (
+          <MovieModal isOpen={isModalOpen} movie={selectedMovie} onClose={closeModal} />
+        )}
+      </div>
+
+      <Footer />  
+    </>
+    
   );
 };
 
